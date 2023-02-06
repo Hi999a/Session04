@@ -30,7 +30,7 @@
                             <td>{{$value->name}}</td>
                             <td>{{$value->price}}</td>
                             <td><img src="{{asset('uploads')}}/{{$value->image}}" alt="" width="100px"></td>
-                            <td>{{$value->categoryName}}</td>
+                            <td>{{$value->category->name}}</td>
                             <td>{{$value->status ? 'Hiện' : 'Ẩn'}}</td>
                             <td>
                                 <a href="{{route('product.edit', $value->id)}}" class="btn btn-primary">Sửa</a>

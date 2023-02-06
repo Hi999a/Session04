@@ -16,6 +16,7 @@
                             <th>STT</th>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>ProductQty</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,7 @@
                             <td scope="row">{{$loop->iteration}}</td>
                             <td>{{$value->name}}</td>
                             <td>{{$value->status ? 'Hiện' : 'Ẩn'}}</td>
+                            <td>{{$value->products->count()}}</td>
                         </tr>
                         @endforeach
                     </tbody>

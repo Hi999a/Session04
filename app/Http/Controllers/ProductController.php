@@ -5,25 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddProductRequest;
 use DB;
+use App\Models\Product;
+use App\Models\Category;
 use File;
 class ProductController extends Controller
 {
     public function index ()
     {
-        $products = DB::table('product')->join('category','product.category_id','=','category.id')
-        ->select('product.*','category.name AS categoryName')->get();
-      
+        $products = Product::all();
         return view('product.index',compact('products'));
     }
 
     public function add()
     {
-        $category = DB::table('category')->get();
+        $category = Category::all();
         return view('product.add',compact('category'));
     }
 
     public function create(AddProductRequest $req)
     {
+
+       
         // cách 1
         // $req->validate([
         //     'name'=>'required|unique:product',
@@ -35,21 +37,17 @@ class ProductController extends Controller
         // ]);
 
         // xử lý upload file 
-        if($req->hasFile('image')){
-            $file = $req->image;
+        if($req->hasFile('file')){
+            $file = $req->file;
             $fileName = $file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
-        } else{
-            $fileName = '';
+            $req->merge(['image'=>$fileName]);
         }
-
-        $product = DB::table('product')->insert([
-            'name'=>$req->name,
-            'price'=>$req->price,
-            'category_id'=>$req->category_id,
-            'image'=>$fileName,
-
-        ]);
+        
+        
+     
+      
+        $product = Product::create($req->all());
 
          return redirect()->route('product.index');
     }

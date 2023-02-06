@@ -26,7 +26,7 @@ class AddProductRequest extends FormRequest
         return [
             'name'=>'required|unique:product',
             'price'=>'required|numeric|min:1',
-            'image'=>'required'
+            'file'=>'required'
         ];
     }
 

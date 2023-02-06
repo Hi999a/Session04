@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
 Route::get('add-category', [CategoryController::class, 'add'])->name('category.add');
 Route::post('add-category', [CategoryController::class, 'create']);
@@ -28,6 +29,8 @@ Route::post('add-product', [ProductController::class, 'create']);
 Route::get('product/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::post('product/{id}', [ProductController::class, 'update']);
 Route::get('product-delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+
 
 Route::get('upload', [CategoryController::class, 'test']);
 Route::post('upload', [CategoryController::class, 'upload']);

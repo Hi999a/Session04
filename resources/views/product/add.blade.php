@@ -43,8 +43,8 @@
                
                 <div class="form-group">
                     <label for="exampleInputEmail1">Iamge</label>
-                    <input type="file" class="form-control" name="image" aria-describedby="emailHelp" placeholder="Enter email">
-                    @error('image')
+                    <input type="file" class="form-control" name="file" aria-describedby="emailHelp" placeholder="Enter email">
+                    @error('file')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
